@@ -1,4 +1,5 @@
 ﻿using EfCodeFirst.DataAccess.Models;
+using EfCodeFirst.DataAccess.Seeds;
 using Microsoft.EntityFrameworkCore;
 
 namespace EfCodeFirst.DataAccess;
@@ -25,5 +26,8 @@ public class MoviesContext : DbContext
             .WithOne(p => p.Gender)
             .HasForeignKey(p => p.GenderId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Gender>()
+            .HasData(GenderSeed.Genders);
     }
 }
