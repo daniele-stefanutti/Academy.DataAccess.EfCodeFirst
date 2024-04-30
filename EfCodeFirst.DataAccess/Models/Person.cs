@@ -21,4 +21,5 @@ public class Person
     public string Name { get; set; } = string.Empty;
 
     public virtual Gender Gender { get; set; } = null!;
+    public virtual ICollection<MovieCast> MovieCasts { get; set; } = Array.Empty<MovieCast>();
 }
