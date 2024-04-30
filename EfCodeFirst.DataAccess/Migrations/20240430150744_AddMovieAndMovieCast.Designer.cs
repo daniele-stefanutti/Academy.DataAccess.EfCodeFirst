@@ -4,6 +4,7 @@ using EfCodeFirst.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EfCodeFirst.DataAccess.Migrations
 {
     [DbContext(typeof(MoviesContext))]
-    partial class MoviesContextModelSnapshot : ModelSnapshot
+    [Migration("20240430150744_AddMovieAndMovieCast")]
+    partial class AddMovieAndMovieCast
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +39,7 @@ namespace EfCodeFirst.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Gender");
+                    b.ToTable("Genders");
 
                     b.HasData(
                         new
@@ -127,28 +130,28 @@ namespace EfCodeFirst.DataAccess.Migrations
 
             modelBuilder.Entity("EfCodeFirst.DataAccess.Models.Person", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PersonId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("person_id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonId"));
 
                     b.Property<int>("GenderId")
                         .HasColumnType("int")
                         .HasColumnName("gender_id");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("PersonName")
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("person_name");
 
-                    b.HasKey("Id");
+                    b.HasKey("PersonId");
 
                     b.HasIndex("GenderId");
 
-                    b.ToTable("Person");
+                    b.ToTable("Persons");
                 });
 
             modelBuilder.Entity("EfCodeFirst.DataAccess.Models.MovieCast", b =>
