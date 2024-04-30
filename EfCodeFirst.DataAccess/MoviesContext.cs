@@ -8,6 +8,8 @@ public class MoviesContext : DbContext
 {
     public DbSet<Gender> Genders { get; set; }
     public DbSet<Person> Persons { get; set; }
+    public DbSet<Movie> Movies { get; set; }
+    public DbSet<MovieCast> MovieCasts { get; set; }
 
     public MoviesContext()
     { }
