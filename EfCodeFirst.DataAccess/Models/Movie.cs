@@ -34,4 +34,5 @@ public class Movie
     public int? VotesCount { get; set; }
 
     public virtual ICollection<MovieCast> MovieCasts { get; set; } = Array.Empty<MovieCast>();
+    public virtual ICollection<MovieCrew> MovieCrews { get; set; } = Array.Empty<MovieCrew>();
 }

@@ -22,4 +22,5 @@ public class Person
 
     public virtual Gender Gender { get; set; } = null!;
     public virtual ICollection<MovieCast> MovieCasts { get; set; } = Array.Empty<MovieCast>();
+    public virtual ICollection<MovieCrew> MovieCrews { get; } = Array.Empty<MovieCrew>();
 }
