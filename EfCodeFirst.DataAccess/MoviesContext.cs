@@ -90,6 +90,8 @@ public class MoviesContext : DbContext
                 .WithOne(ml => ml.Language)
                 .HasForeignKey(ml => ml.LanguageId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            language.HasData(LanguageSeed.Languages);
         });
     }
 }
