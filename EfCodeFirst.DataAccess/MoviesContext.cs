@@ -72,6 +72,8 @@ public class MoviesContext : DbContext
                 .WithOne(mc => mc.Department)
                 .HasForeignKey(mc => mc.DepartmentId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            department.HasData(DepartmentSeed.Departments);
         });
     }
 }
