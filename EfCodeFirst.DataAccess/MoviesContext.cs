@@ -10,6 +10,8 @@ public class MoviesContext : DbContext
     public DbSet<Person> Persons { get; set; }
     public DbSet<Movie> Movies { get; set; }
     public DbSet<MovieCast> MovieCasts { get; set; }
+    public DbSet<MovieCrew> MovieCrews { get; set; }
+    public DbSet<Department> Departments { get; set; }
 
     public MoviesContext()
     { }
@@ -39,6 +41,10 @@ public class MoviesContext : DbContext
                 .WithOne(mc => mc.Person)
                 .HasForeignKey(mc => mc.PersonId)
                 .OnDelete(DeleteBehavior.Cascade);
+            person.HasMany(p => p.MovieCrews)
+                .WithOne(mc => mc.Person)
+                .HasForeignKey(mc => mc.PersonId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Movie>(movie =>
@@ -47,9 +53,25 @@ public class MoviesContext : DbContext
                 .WithOne(mc => mc.Movie)
                 .HasForeignKey(mc => mc.MovieId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            movie.HasMany(p => p.MovieCrews)
+                .WithOne(mc => mc.Movie)
+                .HasForeignKey(mc => mc.MovieId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<MovieCast>()
             .HasKey(mc => new { mc.MovieId, mc.PersonId });
+
+        modelBuilder.Entity<MovieCrew>()
+            .HasKey(mc => new { mc.MovieId, mc.PersonId, mc.DepartmentId });
+
+        modelBuilder.Entity<Department>(department =>
+        {
+            department.HasMany(p => p.MovieCrews)
+                .WithOne(mc => mc.Department)
+                .HasForeignKey(mc => mc.DepartmentId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
     }
 }
