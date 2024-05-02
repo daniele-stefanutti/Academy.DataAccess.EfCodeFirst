@@ -35,4 +35,5 @@ public class Movie
 
     public virtual ICollection<MovieCast> MovieCasts { get; set; } = Array.Empty<MovieCast>();
     public virtual ICollection<MovieCrew> MovieCrews { get; set; } = Array.Empty<MovieCrew>();
+    public virtual ICollection<MovieLanguages> MovieLanguages { get; } = Array.Empty<MovieLanguages>();
 }
