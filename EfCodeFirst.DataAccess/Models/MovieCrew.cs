@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EfCodeFirst.DataAccess.Models;
 
+[Table("Movie_Crew")]
 public class MovieCrew
 {
     [Key]
