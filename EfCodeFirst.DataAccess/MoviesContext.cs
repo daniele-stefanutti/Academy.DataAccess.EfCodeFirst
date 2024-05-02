@@ -12,6 +12,8 @@ public class MoviesContext : DbContext
     public DbSet<MovieCast> MovieCasts { get; set; }
     public DbSet<MovieCrew> MovieCrews { get; set; }
     public DbSet<Department> Departments { get; set; }
+    public DbSet<MovieLanguages> MovieLanguages { get; set; }
+    public DbSet<Language> Languages { get; set; }
 
     public MoviesContext()
     { }
@@ -49,17 +51,17 @@ public class MoviesContext : DbContext
 
         modelBuilder.Entity<Movie>(movie =>
         {
-            movie.HasMany(p => p.MovieCasts)
+            movie.HasMany(m => m.MovieCasts)
                 .WithOne(mc => mc.Movie)
                 .HasForeignKey(mc => mc.MovieId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            movie.HasMany(p => p.MovieCrews)
+            movie.HasMany(m => m.MovieCrews)
                 .WithOne(mc => mc.Movie)
                 .HasForeignKey(mc => mc.MovieId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            movie.HasMany(p => p.MovieLanguages)
+            movie.HasMany(m => m.MovieLanguages)
                 .WithOne(ml => ml.Movie)
                 .HasForeignKey(ml => ml.MovieId)
                 .OnDelete(DeleteBehavior.Cascade);
@@ -76,7 +78,7 @@ public class MoviesContext : DbContext
 
         modelBuilder.Entity<Department>(department =>
         {
-            department.HasMany(p => p.MovieCrews)
+            department.HasMany(d => d.MovieCrews)
                 .WithOne(mc => mc.Department)
                 .HasForeignKey(mc => mc.DepartmentId)
                 .OnDelete(DeleteBehavior.Cascade);
@@ -86,7 +88,7 @@ public class MoviesContext : DbContext
 
         modelBuilder.Entity<Language>(language =>
         {
-            language.HasMany(p => p.MovieLanguages)
+            language.HasMany(l => l.MovieLanguages)
                 .WithOne(ml => ml.Language)
                 .HasForeignKey(ml => ml.LanguageId)
                 .OnDelete(DeleteBehavior.Cascade);

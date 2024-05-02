@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EfCodeFirst.DataAccess.Models;
 
+[Table("Language")]
 public class Language
 {
     [Key]
