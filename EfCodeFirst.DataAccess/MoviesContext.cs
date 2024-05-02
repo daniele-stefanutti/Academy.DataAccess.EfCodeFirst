@@ -32,5 +32,24 @@ public class MoviesContext : DbContext
 
             gender.HasData(GenderSeed.Genders);
         });
+
+        modelBuilder.Entity<Person>(person =>
+        {
+            person.HasMany(p => p.MovieCasts)
+                .WithOne(mc => mc.Person)
+                .HasForeignKey(mc => mc.PersonId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<Movie>(movie =>
+        {
+            movie.HasMany(p => p.MovieCasts)
+                .WithOne(mc => mc.Movie)
+                .HasForeignKey(mc => mc.MovieId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<MovieCast>()
+            .HasKey(mc => new { mc.MovieId, mc.PersonId });
     }
 }

@@ -12,7 +12,7 @@ namespace EfCodeFirst.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Movies",
+                name: "Movie",
                 columns: table => new
                 {
                     movie_id = table.Column<int>(type: "int", nullable: false)
@@ -27,11 +27,11 @@ namespace EfCodeFirst.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Movies", x => x.movie_id);
+                    table.PrimaryKey("PK_Movie", x => x.movie_id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MovieCasts",
+                name: "Movie_Cast",
                 columns: table => new
                 {
                     movie_id = table.Column<int>(type: "int", nullable: false),
@@ -41,24 +41,24 @@ namespace EfCodeFirst.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieCasts", x => new { x.movie_id, x.person_id });
+                    table.PrimaryKey("PK_Movie_Cast", x => new { x.movie_id, x.person_id });
                     table.ForeignKey(
-                        name: "FK_MovieCasts_Movies_movie_id",
+                        name: "FK_Movie_Cast_Movie_movie_id",
                         column: x => x.movie_id,
-                        principalTable: "Movies",
+                        principalTable: "Movie",
                         principalColumn: "movie_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MovieCasts_Persons_person_id",
+                        name: "FK_Movie_Cast_Person_person_id",
                         column: x => x.person_id,
-                        principalTable: "Persons",
+                        principalTable: "Person",
                         principalColumn: "person_id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieCasts_person_id",
-                table: "MovieCasts",
+                name: "IX_Movie_Cast_person_id",
+                table: "Movie_Cast",
                 column: "person_id");
         }
 
@@ -66,10 +66,10 @@ namespace EfCodeFirst.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MovieCasts");
+                name: "Movie_Cast");
 
             migrationBuilder.DropTable(
-                name: "Movies");
+                name: "Movie");
         }
     }
 }

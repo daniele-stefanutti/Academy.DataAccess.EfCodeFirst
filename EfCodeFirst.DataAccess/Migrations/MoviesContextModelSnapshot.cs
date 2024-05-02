@@ -58,12 +58,12 @@ namespace EfCodeFirst.DataAccess.Migrations
 
             modelBuilder.Entity("EfCodeFirst.DataAccess.Models.Movie", b =>
                 {
-                    b.Property<int>("MovieId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("movie_id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long?>("Budget")
                         .HasColumnType("bigint")
@@ -94,9 +94,9 @@ namespace EfCodeFirst.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasColumnName("votes_count");
 
-                    b.HasKey("MovieId");
+                    b.HasKey("Id");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Movie");
                 });
 
             modelBuilder.Entity("EfCodeFirst.DataAccess.Models.MovieCast", b =>
@@ -122,7 +122,7 @@ namespace EfCodeFirst.DataAccess.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("MovieCasts");
+                    b.ToTable("Movie_Cast");
                 });
 
             modelBuilder.Entity("EfCodeFirst.DataAccess.Models.Person", b =>

@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EfCodeFirst.DataAccess.Models;
 
+[Table("Movie")]
 public class Movie
 {
     [Key]
     [Column(name: "movie_id")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int MovieId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [Column(name: "title")]
