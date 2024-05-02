@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EfCodeFirst.DataAccess.Models;
 
+[Table("Person")]
 public class Person
 {
     [Key]
     [Column(name: "person_id")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int PersonId { get; set; }
+    public int Id { get; set; }
 
     [Column(name: "gender_id")]
     [Required]
@@ -17,7 +18,7 @@ public class Person
     [Column(name: "person_name")]
     [Required]
     [MaxLength(500)]
-    public string PersonName { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     public virtual Gender Gender { get; set; } = null!;
 }

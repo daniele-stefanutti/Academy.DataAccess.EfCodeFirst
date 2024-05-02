@@ -13,7 +13,7 @@ namespace EfCodeFirst.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Genders",
+                name: "Gender",
                 columns: table => new
                 {
                     gender_id = table.Column<int>(type: "int", nullable: false),
@@ -21,11 +21,11 @@ namespace EfCodeFirst.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Genders", x => x.gender_id);
+                    table.PrimaryKey("PK_Gender", x => x.gender_id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Persons",
+                name: "Person",
                 columns: table => new
                 {
                     person_id = table.Column<int>(type: "int", nullable: false)
@@ -35,17 +35,17 @@ namespace EfCodeFirst.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Persons", x => x.person_id);
+                    table.PrimaryKey("PK_Person", x => x.person_id);
                     table.ForeignKey(
-                        name: "FK_Persons_Genders_gender_id",
+                        name: "FK_Person_Gender_gender_id",
                         column: x => x.gender_id,
-                        principalTable: "Genders",
+                        principalTable: "Gender",
                         principalColumn: "gender_id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Genders",
+                table: "Gender",
                 columns: new[] { "gender_id", "gender" },
                 values: new object[,]
                 {
@@ -55,8 +55,8 @@ namespace EfCodeFirst.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Persons_gender_id",
-                table: "Persons",
+                name: "IX_Person_gender_id",
+                table: "Person",
                 column: "gender_id");
         }
 
@@ -64,10 +64,10 @@ namespace EfCodeFirst.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Persons");
+                name: "Person");
 
             migrationBuilder.DropTable(
-                name: "Genders");
+                name: "Gender");
         }
     }
 }

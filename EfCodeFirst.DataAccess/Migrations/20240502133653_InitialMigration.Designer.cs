@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EfCodeFirst.DataAccess.Migrations
 {
     [DbContext(typeof(MoviesContext))]
-    [Migration("20240430092340_InitialMigration")]
+    [Migration("20240502133653_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -38,7 +38,7 @@ namespace EfCodeFirst.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genders");
+                    b.ToTable("Gender");
 
                     b.HasData(
                         new
@@ -60,28 +60,28 @@ namespace EfCodeFirst.DataAccess.Migrations
 
             modelBuilder.Entity("EfCodeFirst.DataAccess.Models.Person", b =>
                 {
-                    b.Property<int>("PersonId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("person_id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("GenderId")
                         .HasColumnType("int")
                         .HasColumnName("gender_id");
 
-                    b.Property<string>("PersonName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("person_name");
 
-                    b.HasKey("PersonId");
+                    b.HasKey("Id");
 
                     b.HasIndex("GenderId");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Person");
                 });
 
             modelBuilder.Entity("EfCodeFirst.DataAccess.Models.Person", b =>

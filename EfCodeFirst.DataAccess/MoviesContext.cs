@@ -21,13 +21,14 @@ public class MoviesContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Gender>()
-            .HasMany(g => g.Persons)
-            .WithOne(p => p.Gender)
-            .HasForeignKey(p => p.GenderId)
-            .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<Gender>(gender =>
+        {
+            gender.HasMany(g => g.Persons)
+                .WithOne(p => p.Gender)
+                .HasForeignKey(p => p.GenderId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<Gender>()
-            .HasData(GenderSeed.Genders);
+            gender.HasData(GenderSeed.Genders);
+        });
     }
 }
